@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>React Modules Setup Guide</title>
+    <style>
+        body { font-family: Arial, sans-serif; line-height: 1.6; padding: 20px; background: #f5f5f5; }
+        h1, h2 { color: #333; }
+        pre { background: #222; color: #0f0; padding: 15px; overflow-x: auto; }
+        code { color: #f0f; }
+        .note { background: #fffae6; border-left: 4px solid #ffc107; padding: 10px; margin: 10px 0; }
+        a { color: #007bff; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+    <h1>React Modules Setup Guide</h1>
+    <p>This guide will show you how to use <strong>@rainbow-me/rainbowkit</strong>, <strong>wagmi</strong>, <strong>viem</strong>, and <strong>@tanstack/react-query</strong> modules in a new React app using the zip files you downloaded from GitHub.</p>
+
+    <h2>Step 1: Download the Zip</h2>
+    <p>Download your zip file from GitHub:</p>
+    <pre><code>https://github.com/mosarofkhan/wallet.git</code></pre>
+    <p>Unzip it. Make sure the folder is named <strong>node_modules</strong>.</p>
+
+    <h2>Step 2: Create a New React App</h2>
+    <pre><code>npx create-react-app my-new-app
+cd my-new-app</code></pre>
+
+    <h2>Step 3: Replace node_modules</h2>
+    <p>Copy the <strong>node_modules</strong> folder from your unzipped file into the new React app folder.</p>
+    <p>Also copy <strong>package.json</strong> and <strong>package-lock.json</strong> from the zip.</p>
+
+    <h2>Step 4: Test the App</h2>
+    <pre><code>npm start</code></pre>
+    <p>Your modules should work exactly like they would if installed from npm registry.</p>
+
+    <div class="note">
+        <strong>Note:</strong> If you need to add new dependencies or update versions, npm will download them from the registry. If the npm registry becomes unavailable, you can still work using the zip copy of node_modules.
+    </div>
+
+    <h2>Step 5: Using the Modules</h2>
+    <p>Example code:</p>
+    <pre><code>import React from 'react';
+import { RainbowKitProvider } from '@rainbow-me/rainbowkit';
+import { WagmiConfig, createClient } from 'wagmi';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { createPublicClient, http } from 'viem';
+
+const client = createClient({
+    autoConnect: true,
+    connectors: [],
+});
+
+const queryClient = new QueryClient();
+
+function App() {
+    return (
+        &lt;WagmiConfig client={client}&gt;
+            &lt;RainbowKitProvider chains={[]}&gt;
+                &lt;QueryClientProvider client={queryClient}&gt;
+                    &lt;div&gt;Hello World&lt;/div&gt;
+                &lt;/QueryClientProvider&gt;
+            &lt;/RainbowKitProvider&gt;
+        &lt;/WagmiConfig&gt;
+    );
+}
+
+export default App;</code></pre>
+
+    <h2>Final Notes</h2>
+    <p>This is how you can easily use your zip backup of modules in a new React project without relying on npm registry availability.</p>
+</body>
+</html>
